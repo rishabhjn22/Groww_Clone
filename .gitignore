@@ -140,3 +140,93 @@ dist
 frontend/node_modules/
 frontend/android/app/build/
 frontend/ios/Pods/
+
+.DS_Store
+
+# Xcode
+#
+build/
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata
+*.xccheckout
+*.moved-aside
+DerivedData
+*.hmap
+*.ipa
+*.xcuserstate
+
+
+# Android/IntelliJ
+#
+build/
+.idea
+.gradle
+local.properties
+*.iml
+.cxx/
+*.keystore
+!debug.keystore
+
+
+# node.js
+#
+node_modules/
+package-lock.json # include if you are using npm - don't use both yarn and npm
+npm-debug.log
+npm-debug.log
+yarn-error.log
+yarn.lock
+
+# ios/Pods,
+ios/Pods/
+ios/Podfile.lock
+ios/*.xcworkspace
+
+
+# Fastlane
+#
+# It is recommended to not store the screenshots in the git repo. Instead, use Fastlane to re-generate the
+# screenshots whenever they are needed.
+# For more information about the recommended setup visit:
+# https://docs.fastlane.tools/best-practices/source-control/
+
+**/fastlane/report.xml
+**/fastlane/Preview.html
+**/fastlane/screenshots
+**/fastlane/test_output
+
+# Bundle artifact
+*.jsbundle
+package-lock.json
+.vscode/settings.json
+package-lock.json
+cache/
+coverage/
+.scannerwork
+esLintReport/
+reports/
+junit.xml
+test-report.xml
+test-report.html
+DriveXPO.app.dSYM.zip
+fastlane/report.xml
+android/app/src/main/assets/index.android.bundle
+# android/app/src/main/res
+*.pbxproj
+*.xcworkspacedata
+default.realm
+default.realm.lock
+access_control.control.mx
+access_control.write.mx
+android/app/release/
+
+
+# react-native-config codegen
+ios/tmp.xcconfig
