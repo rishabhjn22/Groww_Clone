@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const connectDB = async () => {
   try {
     // MongoDB connection string (use your own database name here)
-    const dbURI = process.env.MONGO_URI || 'mongodb://localhost:27017/backend-hub';
+    const dbURI = process.env.MONGO_URI;
     
     // Connect to MongoDB
     await mongoose.connect(dbURI, {
