@@ -136,11 +136,9 @@ dist
 .pnp.*
 
 
-# React Native (frontend)
-frontend/node_modules/
-frontend/android/app/build/
-frontend/ios/Pods/
 
+# OSX
+#
 .DS_Store
 
 # Xcode
@@ -161,7 +159,7 @@ DerivedData
 *.hmap
 *.ipa
 *.xcuserstate
-
+**/.xcode.env.local
 
 # Android/IntelliJ
 #
@@ -170,29 +168,20 @@ build/
 .gradle
 local.properties
 *.iml
+*.hprof
 .cxx/
 *.keystore
 !debug.keystore
 
-
 # node.js
 #
-node_modules/
-package-lock.json # include if you are using npm - don't use both yarn and npm
-npm-debug.log
+frontend/node_modules/
 npm-debug.log
 yarn-error.log
-yarn.lock
 
-# ios/Pods,
-ios/Pods/
-ios/Podfile.lock
-ios/*.xcworkspace
-
-
-# Fastlane
+# fastlane
 #
-# It is recommended to not store the screenshots in the git repo. Instead, use Fastlane to re-generate the
+# It is recommended to not store the screenshots in the git repo. Instead, use fastlane to re-generate the
 # screenshots whenever they are needed.
 # For more information about the recommended setup visit:
 # https://docs.fastlane.tools/best-practices/source-control/
@@ -204,29 +193,21 @@ ios/*.xcworkspace
 
 # Bundle artifact
 *.jsbundle
-package-lock.json
-.vscode/settings.json
-package-lock.json
-cache/
-coverage/
-.scannerwork
-esLintReport/
-reports/
-junit.xml
-test-report.xml
-test-report.html
-DriveXPO.app.dSYM.zip
-fastlane/report.xml
-android/app/src/main/assets/index.android.bundle
-# android/app/src/main/res
-*.pbxproj
-*.xcworkspacedata
-default.realm
-default.realm.lock
-access_control.control.mx
-access_control.write.mx
-android/app/release/
 
+# Ruby / CocoaPods
+**/Pods/
+/vendor/bundle/
 
-# react-native-config codegen
-ios/tmp.xcconfig
+# Temporary files created by Metro to check the health of the file watcher
+.metro-health-check*
+
+# testing
+/coverage
+
+# Yarn
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
