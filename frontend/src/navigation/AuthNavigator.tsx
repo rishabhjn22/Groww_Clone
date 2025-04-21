@@ -1,8 +1,10 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
+import EmailLogin from '../screens/emailLogin';
 import Welcome from '../screens/welcome';
+import {RootStackParamList} from '../types/navigation';
 
-const Stack = createStackNavigator();
+const Stack = createStackNavigator<RootStackParamList>();
 
 export default function AuthNavigator() {
   return (
@@ -12,7 +14,11 @@ export default function AuthNavigator() {
         component={Welcome}
         options={{headerShown: false}}
       />
-      {/* other screens like Details, Modal etc. */}
+      <Stack.Screen
+        name="EmailLogin"
+        component={EmailLogin}
+        options={{headerShown: false}}
+      />
     </Stack.Navigator>
   );
 }

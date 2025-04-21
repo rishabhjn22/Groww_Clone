@@ -39,9 +39,21 @@ type PrimaryButtonProps = {
   buttonStyle?: ViewStyle;
   icon?: React.ReactNode;
   labelStyle?: ViewStyle;
+  disabled?: boolean;
 };
 
 type TextButtonProps = {
   label: string;
   onPress?: () => void;
+  textDecorationLine?:
+    | 'none'
+    | 'underline'
+    | 'line-through'
+    | 'underline line-through';
+  textStyle?: ViewStyle;
+};
+
+type InputProps = {
+  label: string;
+  placeholder?: string;
 };

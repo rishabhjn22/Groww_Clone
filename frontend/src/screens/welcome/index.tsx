@@ -1,15 +1,18 @@
 import React from 'react';
 import Box from '../../components/Box';
 import CustomText from '../../components/CustomText';
-import {Image, StyleSheet} from 'react-native';
+import {Image, StyleSheet, Text} from 'react-native';
 import colors from '../../theme/color';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import CustomButton from '../../components/CustomButton';
 import GoogleIcon from '../../assets/images/google.svg';
 import AppleIcon from '../../assets/images/apple.svg';
 import TextButton from '../../components/TextButton';
+import {AuthNavigationProps} from '../../types/navigation';
 
-export default function Welcome() {
+type Props = AuthNavigationProps<'Welcome'>;
+
+export default function Welcome({navigation}: Props) {
   return (
     <SafeAreaView style={styles.container}>
       <Box mt={25} alignItems="center">
@@ -37,7 +40,7 @@ export default function Welcome() {
           labelStyle={styles.labelStyle}
         />
       </Box>
-      <Box mv={10} alignItems="center">
+      <Box mv={5} alignItems="center">
         <CustomButton
           label="Continue with Apple"
           onPress={() => console.log('hello apple')}
@@ -46,8 +49,47 @@ export default function Welcome() {
           labelStyle={styles.labelStyle}
         />
       </Box>
-      <Box alignItems='center' mt={20}>
-        <TextButton label="Use other email ID" />
+      <Box alignItems="center" mt={20}>
+        <TextButton
+          label="Use other email ID"
+          onPress={() => navigation.navigate('EmailLogin')}
+        />
+      </Box>
+      <Box mt={50} width={'100%'} alignSelf="center" justifyContent="center">
+        <Text style={styles.bottomText}>
+          <CustomText color={colors.textSecondary} fontSize={13}>
+            By proceeding, I accept Groww's{' '}
+            <TextButton
+              label="T&C"
+              textDecorationLine="underline"
+              textStyle={styles.bottomTextStyle}
+            />
+            {', '}
+            <TextButton
+              label="Privacy Policy"
+              textDecorationLine="underline"
+              textStyle={styles.bottomTextStyle}
+            />
+            {', '}
+            <TextButton
+              label="Tariff Rates"
+              textDecorationLine="underline"
+              textStyle={styles.bottomTextStyle}
+            />
+            {', '}
+            <TextButton
+              label="FATCA_Declaration"
+              textDecorationLine="underline"
+              textStyle={styles.bottomTextStyle}
+            />
+            {' & '}
+            <TextButton
+              label="CIBIL T&C"
+              textDecorationLine="underline"
+              textStyle={styles.bottomTextStyle}
+            />
+          </CustomText>
+        </Text>
       </Box>
     </SafeAreaView>
   );
@@ -68,5 +110,12 @@ const styles = StyleSheet.create({
   },
   labelStyle: {
     marginLeft: 10,
+  },
+  bottomText: {
+    textAlign: 'center',
+  },
+  bottomTextStyle: {
+    fontSize: 11,
+    top: 1,
   },
 });

@@ -42,6 +42,17 @@ export default function CustomText({
     }
   }, [color]);
 
+  const fontWeightValue = useMemo(() => {
+    switch (weight) {
+      case 'bold':
+        return '700';
+      case 'semibold':
+        return '600';
+      default:
+        return '400';
+    }
+  }, [weight]);
+
   const resolvedFontFamily = useMemo(() => {
     if (fontFamily) {
       return fontFamily;
@@ -59,6 +70,7 @@ export default function CustomText({
           fontFamily: resolvedFontFamily,
           lineHeight: scaledLineHeight,
           color: textColor,
+          fontWeight: fontWeightValue,
         },
         style,
       ]}>
