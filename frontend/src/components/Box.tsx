@@ -15,6 +15,10 @@ export default function Box({
   mt,
   mb,
   flex,
+  p,
+  mr,
+  ml,
+  borderRadius,
   // backgroundColor,
   ...props
 }: BoxProps & ViewProps) {
@@ -40,6 +44,10 @@ export default function Box({
           marginTop: mt,
           marginBottom: mb,
           flex,
+          padding: p,
+          marginRight: mr,
+          marginLeft: ml,
+          borderRadius,
           // backgroundColor: backgroundColor || currentColors.background,
         },
         props.style,

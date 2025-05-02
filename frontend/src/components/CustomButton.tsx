@@ -10,18 +10,27 @@ export default function CustomButton({
   buttonStyle,
   icon,
   labelStyle,
-  disabled,
+  disabled = false,
+  buttonType = 'primary',
 }: PrimaryButtonProps) {
   return (
     <Pressable
-      style={[styles.container, buttonStyle, disabled && styles.disbaleStyle]}
+      style={[
+        styles.container,
+        buttonType === 'secondary' && styles.buttonSecondary,
+        disabled && styles.disbaleStyle,
+        buttonStyle,
+      ]}
+      disabled={disabled}
       onPress={onPress}>
       {icon && <>{icon}</>}
       <CustomText
-        color={disabled ? colors.white : colors.black}
+        color={
+          disabled || buttonType === 'primary' ? colors.white : colors.black
+        }
         fontSize={16}
         weight="semibold"
-        style={[styles.label, labelStyle, disabled]}>
+        style={[labelStyle, disabled]}>
         {label}
       </CustomText>
     </Pressable>
@@ -33,21 +42,15 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     paddingHorizontal: pixelSizeHorizontal(20),
     paddingVertical: pixelSizeVertical(12),
-    backgroundColor: colors.white,
     alignItems: 'center',
     justifyContent: 'center',
     width: '100%',
     flexDirection: 'row',
   },
   disbaleStyle: {
-    borderRadius: 5,
-    paddingHorizontal: pixelSizeHorizontal(20),
-    paddingVertical: pixelSizeVertical(12),
     backgroundColor: '#4f4c4c',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: '100%',
-    flexDirection: 'row',
   },
-  label: {},
+  buttonSecondary: {
+    backgroundColor: colors.white,
+  },
 });

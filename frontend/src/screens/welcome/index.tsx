@@ -9,6 +9,7 @@ import GoogleIcon from '../../assets/images/google.svg';
 import AppleIcon from '../../assets/images/apple.svg';
 import TextButton from '../../components/TextButton';
 import {AuthNavigationProps} from '../../types/navigation';
+import {RoutePaths} from '../../constants/RoutePaths';
 
 type Props = AuthNavigationProps<'Welcome'>;
 
@@ -38,6 +39,7 @@ export default function Welcome({navigation}: Props) {
           buttonStyle={styles.buttonStyle}
           icon={<GoogleIcon width={20} height={20} />}
           labelStyle={styles.labelStyle}
+          buttonType="secondary"
         />
       </Box>
       <Box mv={5} alignItems="center">
@@ -47,12 +49,13 @@ export default function Welcome({navigation}: Props) {
           buttonStyle={styles.buttonStyle}
           icon={<AppleIcon width={20} height={20} />}
           labelStyle={styles.labelStyle}
+          buttonType="secondary"
         />
       </Box>
       <Box alignItems="center" mt={20}>
         <TextButton
           label="Use other email ID"
-          onPress={() => navigation.navigate('EmailLogin')}
+          onPress={() => navigation.navigate(RoutePaths.EMAILLOGIN)}
         />
       </Box>
       <Box mt={50} width={'100%'} alignSelf="center" justifyContent="center">

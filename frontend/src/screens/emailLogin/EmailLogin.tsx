@@ -8,11 +8,31 @@ import Input from '../../components/Input';
 import CustomButton from '../../components/CustomButton';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {AuthNavigationProps} from '../../types/navigation';
+import {validateEmail} from '../../utils/regex';
+import {RoutePaths} from '../../constants/RoutePaths';
 
 type Props = AuthNavigationProps<'EmailLogin'>;
 
 export default function EmailLogin({navigation}: Props) {
   const [email, setEmail] = useState<string>('');
+  const [error, setError] = useState<string>('');
+
+  const onNext = () => {
+    // Validate email format
+    const isValid = validateEmail(email);
+    if (isValid) {
+      setError('');
+      navigation.navigate(RoutePaths.EMAILPASSWORDLOGIN, {email});
+    } else {
+      setError('Please enter valid email format');
+    }
+  };
+
+  const handleEmailChange = (text: string) => {
+    setError('');
+    setEmail(text);
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <Icon.Button
@@ -43,15 +63,20 @@ export default function EmailLogin({navigation}: Props) {
             label="EMAIL ADDRESS"
             value={email}
             placeholder="Eg: me@gmail.com"
-            onChangeText={setEmail}
+            onChangeText={handleEmailChange}
+            error={error}
+            autoCapitalize="none"
+            autoCorrect={false}
+            onEndEditing={onNext}
           />
         </Box>
       </Box>
       <Box style={styles.buttonContainer}>
         <CustomButton
           label="NEXT"
-          onPress={() => console.log('Next')}
-          disabled
+          onPress={onNext}
+          buttonType={!email || error !== '' ? 'disbale' : 'secondary'}
+          disabled={!email || error !== ''}
         />
       </Box>
     </SafeAreaView>

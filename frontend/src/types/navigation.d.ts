@@ -4,6 +4,10 @@ import {StackNavigationProp} from '@react-navigation/stack';
 type RootStackParamList = {
   Welcome: undefined;
   EmailLogin: undefined;
+  EmailPasswordLogin: {
+    email: string;
+  };
+  ChangePassword: undefined;
 };
 
 type AuthNavigationProps<T extends keyof RootStackParamList> = {

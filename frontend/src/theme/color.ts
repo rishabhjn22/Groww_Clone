@@ -7,6 +7,8 @@ const colors = {
   border: '#E0E0E0', // Border color
   white: '#ffffff',
   black: '#000000',
+  error: '#f44336', // Error color
+  disbale: '#4f4c4c',
 };
 
 export default colors;

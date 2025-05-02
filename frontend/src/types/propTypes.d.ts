@@ -23,6 +23,7 @@ type BoxProps = {
   style?: any;
   backgroundColor?: string;
   flex?: number;
+  borderRadius?: number;
 };
 
 type CustomTextProps = {
@@ -40,6 +41,7 @@ type PrimaryButtonProps = {
   icon?: React.ReactNode;
   labelStyle?: ViewStyle;
   disabled?: boolean;
+  buttonType?: 'primary' | 'secondary' | 'disbale';
 };
 
 type TextButtonProps = {
@@ -54,6 +56,17 @@ type TextButtonProps = {
 };
 
 type InputProps = {
-  label: string;
+  label?: string;
   placeholder?: string;
+  error?: string;
+  onFocus?: (e: any) => void;
+  onBlur?: (e: any) => void;
+  iconName?: string;
+  onPressIcon?: () => void;
+  renderEndIcon?: () => any;
+};
+
+type PasswordEyeButtonProps = {
+  onPress: () => void;
+  secureTextEntry: boolean;
 };
