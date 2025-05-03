@@ -64,9 +64,15 @@ type InputProps = {
   iconName?: string;
   onPressIcon?: () => void;
   renderEndIcon?: () => any;
+  hasLabel?: boolean;
 };
 
 type PasswordEyeButtonProps = {
   onPress: () => void;
   secureTextEntry: boolean;
+};
+
+type CustomToastProps = {
+  text1: string;
+  text2?: string;
 };

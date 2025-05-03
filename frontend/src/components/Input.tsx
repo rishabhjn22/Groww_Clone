@@ -44,7 +44,6 @@ export default function Input(props: InputProps & TextInputProps) {
           onFocus={handleFocus}
           onBlur={handleBlur}
           style={[
-            styles.input,
             {
               borderColor: props.error
                 ? colors.error
@@ -52,6 +51,8 @@ export default function Input(props: InputProps & TextInputProps) {
                 ? colors.primary
                 : colors.textSecondary,
             },
+            styles.input,
+            props.hasLabel && styles.numericInput,
           ]}
           {...props}
         />
@@ -97,5 +98,9 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right: 0,
     bottom: 10,
+  },
+  numericInput: {
+    borderBottomWidth: 2,
+    borderColor: colors.white,
   },
 });

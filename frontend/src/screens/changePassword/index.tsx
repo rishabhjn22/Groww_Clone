@@ -11,6 +11,8 @@ import CustomButton from '../../components/CustomButton';
 import CustomText from '../../components/CustomText';
 import {validatePassword} from '../../utils/regex';
 import TextButton from '../../components/TextButton';
+import {RoutePaths} from '../../constants/RoutePaths';
+import Toast from 'react-native-toast-message';
 
 type Props = AuthNavigationProps<'ChangePassword'>;
 
@@ -91,18 +93,26 @@ export default function ChangePassword({navigation}: Props) {
   };
 
   const onSendOtp = () => {
-    const isValid = validatePassword(password);
-    if (isValid && password === confirmPassword) {
-      setPasswordError('');
-      setConfirmPasswordError('');
-      setShowOtp(true);
+    if (!showOtp) {
+      const isValid = validatePassword(password);
+      if (isValid && password === confirmPassword) {
+        setPasswordError('');
+        setConfirmPasswordError('');
+        setShowOtp(true);
+      } else {
+        if (!isValid) {
+          setPasswordError(
+            'Set a stronger password, kindly refer to the guidelines below.',
+          );
+        } else if (password !== confirmPassword) {
+          setConfirmPasswordError('Password and confirm password do not match');
+        }
+      }
     } else {
-      if (!isValid) {
-        setPasswordError(
-          'Set a stronger password, kindly refer to the guidelines below.',
-        );
-      } else if (password !== confirmPassword) {
-        setConfirmPasswordError('Password and confirm password do not match');
+      if (otp.length !== 6) {
+        setOtpError('Please enter a valid OTP');
+      } else {
+        navigation.navigate(RoutePaths.WELCOME);
       }
     }
   };
@@ -152,29 +162,33 @@ export default function ChangePassword({navigation}: Props) {
           )}
         />
       </Box>
-      <Box width={'90%'} alignSelf="center" mt={20}>
-        <Input
-          value={otp}
-          placeholder="Enter OTP"
-          onChangeText={setOtp}
-          autoCapitalize="none"
-          autoCorrect={false}
-          error={otpError}
-          style={{borderBottomWidth: 2, borderColor: colors.white}}
-          renderEndIcon={() => (
-            <TextButton
-              label={`Resend in ${timer}s`}
-              onPress={() => {}}
-              textStyle={styles.resendButtonStyle}
-            />
-          )}
-        />
-      </Box>
+      {showOtp && (
+        <Box width={'90%'} alignSelf="center" mt={20}>
+          <Input
+            value={otp}
+            placeholder="Enter OTP"
+            onChangeText={setOtp}
+            autoCapitalize="none"
+            autoCorrect={false}
+            error={otpError}
+            keyboardType="numeric"
+            hasLabel={true}
+            maxLength={6}
+            renderEndIcon={() => (
+              <TextButton
+                label={`Resend in ${timer}s`}
+                onPress={() => {}}
+                textStyle={styles.resendButtonStyle}
+              />
+            )}
+          />
+        </Box>
+      )}
 
       <Box style={styles.buttonContainer}>
         <Box style={styles.textContainer}>{passwordValidationPolicyText()}</Box>
         <CustomButton
-          label={'SEND OTP'}
+          label={showOtp ? 'UPDATE PASSWORD' : 'SEND OTP'}
           onPress={onSendOtp}
           buttonType="secondary"
         />

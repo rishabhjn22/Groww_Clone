@@ -10,6 +10,7 @@ import AppleIcon from '../../assets/images/apple.svg';
 import TextButton from '../../components/TextButton';
 import {AuthNavigationProps} from '../../types/navigation';
 import {RoutePaths} from '../../constants/RoutePaths';
+import Toast from 'react-native-toast-message';
 
 type Props = AuthNavigationProps<'Welcome'>;
 
@@ -35,7 +36,14 @@ export default function Welcome({navigation}: Props) {
       <Box mv={10} alignItems="center">
         <CustomButton
           label="Continue with Google"
-          onPress={() => console.log('hello google')}
+          onPress={() =>
+            Toast.show({
+              type: 'success',
+              position: 'bottom',
+              // And I can pass any custom props I want
+              text1: 'Password changed successfully',
+            })
+          }
           buttonStyle={styles.buttonStyle}
           icon={<GoogleIcon width={20} height={20} />}
           labelStyle={styles.labelStyle}
